@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/processos")
+@RequestMapping("/api/processos")
 public class ProcessoController {
     final ProcessoService processoService;
 
