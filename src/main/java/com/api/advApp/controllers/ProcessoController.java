@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
+//@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/processos")
 public class ProcessoController {
     final ProcessoService processoService;
@@ -24,7 +24,7 @@ public class ProcessoController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> saveProcesso (@RequestBody @Valid ProcessoDto processoDto){
+    public ResponseEntity<Object> saveProcesso (@RequestBody ProcessoDto processoDto){
 
         var processoMoldel = new ProcessoModel();
 

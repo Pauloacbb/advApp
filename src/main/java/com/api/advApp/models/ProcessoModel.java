@@ -35,8 +35,8 @@ public class ProcessoModel {
     @Column(nullable = false)
     private String clienteNome;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "userId", nullable = false)
-    private UserModel user;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", referencedColumnName = "userId", nullable = true)
+//    private UserModel user;
 
 }
