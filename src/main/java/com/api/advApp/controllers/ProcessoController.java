@@ -49,13 +49,13 @@ public class ProcessoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteProcesso(@PathVariable(value = "id") Long id){
+    public ResponseEntity<Void> deleteProcesso(@PathVariable(value = "id") Long id){
         Optional<ProcessoModel> processoModelOptional = processoService.findById(id);
         if (!processoModelOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Processo não encontrado.");
+            return ResponseEntity.notFound().build();
         }
         processoService.delete(processoModelOptional.get());
-        return ResponseEntity.status(HttpStatus.OK).body("Processo deletado");
+        return ResponseEntity.noContent().<Void>build();
     }
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateProcesso(@PathVariable(value = "id") Long id,
