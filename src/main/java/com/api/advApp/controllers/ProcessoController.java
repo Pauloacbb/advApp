@@ -6,12 +6,16 @@ import com.api.advApp.services.ProcessoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.List;
 import java.util.Optional;
 
+@Validated
 @RestController
 //@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/processos")
@@ -24,7 +28,7 @@ public class ProcessoController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> saveProcesso (@RequestBody ProcessoDto processoDto){
+    public ResponseEntity<Object> saveProcesso (@RequestBody @Valid ProcessoDto processoDto){
 
         var processoMoldel = new ProcessoModel();
 
@@ -40,7 +44,7 @@ public class ProcessoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getOneProcesso(@PathVariable(value = "id")Long id) {
+    public ResponseEntity<Object> getOneProcesso(@PathVariable(value = "id")@NotNull @Positive Long id) {
         Optional<ProcessoModel> processoModelOptional = processoService.findById(id);
         if (!processoModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Processo não encontrado.");
@@ -49,7 +53,7 @@ public class ProcessoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProcesso(@PathVariable(value = "id") Long id){
+    public ResponseEntity<Void> deleteProcesso(@PathVariable(value = "id")@NotNull @Positive Long id){
         Optional<ProcessoModel> processoModelOptional = processoService.findById(id);
         if (!processoModelOptional.isPresent()) {
             return ResponseEntity.notFound().build();
@@ -58,7 +62,7 @@ public class ProcessoController {
         return ResponseEntity.noContent().<Void>build();
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateProcesso(@PathVariable(value = "id") Long id,
+    public ResponseEntity<Object> updateProcesso(@PathVariable(value = "id")@NotNull @Positive Long id,
                                                  @RequestBody @Valid ProcessoDto processoDto){
         Optional<ProcessoModel> processoModelOptional = processoService.findById(id);
         if (!processoModelOptional.isPresent()) {

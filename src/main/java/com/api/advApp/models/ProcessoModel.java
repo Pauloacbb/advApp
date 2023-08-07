@@ -6,7 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import javax.persistence.*;
+
 
 @Data
 @AllArgsConstructor
@@ -32,7 +34,8 @@ public class ProcessoModel {
     private Integer tribunal;
     @Column(nullable = false)
     private Integer vara;
-    @Column(nullable = false)
+
+    @Column(length = 200, nullable = false)
     private String clienteNome;
 
 //    @ManyToOne
