@@ -5,9 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
 
 @Data
@@ -15,6 +18,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
+@SQLDelete(sql = "UPDATE TB_PROCESSO set status = 'inativo'WHERE id =?")
+@Where(clause = "status = 'Ativo'")
 @Table(name = "TB_PROCESSO")
 public class ProcessoModel {
 
@@ -37,6 +42,9 @@ public class ProcessoModel {
 
     @Column(length = 200, nullable = false)
     private String clienteNome;
+    @Pattern(regexp = "Ativo|Inativos")
+    @Column(length = 10, nullable = false)
+    private String status = "Ativo";
 
 //    @ManyToOne
 //    @JoinColumn(name = "user_id", referencedColumnName = "userId", nullable = true)

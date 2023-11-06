@@ -28,11 +28,13 @@ public class ProcessoDto {
     private Integer tribunal;
     @NotNull
     private Integer vara;
-    @NotBlank
-    @NotNull
+
     @Length(min = 3, max = 200)
     @NotBlank
     private String clienteNome;
+    @Length(min = 3, max = 10)
+    @NotBlank
+    private String status = "Ativo";
 
     private UserModel user;
 
