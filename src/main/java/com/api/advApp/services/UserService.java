@@ -4,7 +4,7 @@ import com.api.advApp.models.UserModel;
 import com.api.advApp.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 

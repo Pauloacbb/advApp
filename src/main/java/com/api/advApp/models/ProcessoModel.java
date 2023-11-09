@@ -9,8 +9,8 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 
-import javax.persistence.*;
-import javax.validation.constraints.Pattern;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 
 
 @Data
