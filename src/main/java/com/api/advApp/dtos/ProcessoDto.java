@@ -1,41 +1,22 @@
 package com.api.advApp.dtos;
 
 
-import com.api.advApp.models.UserModel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 
-public class ProcessoDto {
-
-    @NotNull
-    private Integer numero;
-    @NotNull
-    private Integer digito;
-    @NotBlank
-    private String ano;
-    @NotNull
-    private Integer justica;
-    @NotNull
-    private Integer tribunal;
-    @NotNull
-    private Integer vara;
-
-    @Length(min = 3, max = 200)
-    @NotBlank
-    private String clienteNome;
-    @Length(min = 3, max = 10)
-    @NotBlank
-    private String status = "Ativo";
-
-    private UserModel user;
+public record ProcessoDto(@JsonProperty("_id") Long id,
+                          @NotNull  Integer numero,
+                          @NotNull  Integer digito,
+                          @NotNull @NotBlank String ano,
+                          @NotNull  Integer justica,
+                          @NotNull  Integer tribunal,
+                          @NotNull  Integer vara,
+                          @Length(max = 200) @NotNull @NotBlank String clienteNome
+) {
 
 }
