@@ -1,5 +1,7 @@
 package com.api.advApp.models;
 
+import com.api.advApp.enums.Status;
+import com.api.advApp.enums.converters.StatusConverter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,9 +44,9 @@ public class ProcessoModel {
 
     @Column(length = 200, nullable = false)
     private String clienteNome;
-    @Pattern(regexp = "Ativo|Inativos")
-    @Column(length = 10, nullable = false)
-    private String status = "Ativo";
+    @Column( nullable = false)
+    @Convert(converter = StatusConverter.class)
+    private Status status = Status.ACTIVE;
 
 //    @ManyToOne
 //    @JoinColumn(name = "user_id", referencedColumnName = "userId", nullable = true)
